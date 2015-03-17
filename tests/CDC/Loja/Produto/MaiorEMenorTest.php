@@ -9,7 +9,7 @@ use CDC\Loja\Carrinho\CarrinhoDeCompras,
 	CDC\Loja\Produto\MaiorEMenor;
 use PHPUnit_Framework_TestCase as PHPUnit;
 
-class MaiorEMenor extends PHPUnit
+class MaiorEMenorTest extends PHPUnit
 {
 	public function testOrdemDecrescente()
 	{
