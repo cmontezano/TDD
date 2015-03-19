@@ -22,13 +22,24 @@ class MaiorEMenorTest extends PHPUnit
         $maiorMenor = new MaiorEMenor();
         $maiorMenor->encontra($carrinho);
 
-        $this->assertEquals(
-        	"Jogo de pratos",
-        	$maiorMenor->getMenor()->getNome()
-    	);
-        $this->assertEquals(
-        	"Geladeira",
-        	$maiorMenor->getMaior()->getNome()
-    	);
+        $this->assertEquals("Jogo de pratos", $maiorMenor->getMenor()->getNome());
+        $this->assertEquals("Geladeira", $maiorMenor->getMaior()->getNome());
+        $this->assertInstanceOf("CDC\Loja\Produto\Produto", $maiorMenor->getMenor());
+        $this->assertInstanceOf("CDC\Loja\Produto\Produto", $maiorMenor->getMaior());
+        $this->assertInternalType("object", $maiorMenor->getMenor());
+        $this->assertInternalType("object", $maiorMenor->getMaior());
+    }
+
+    public function testApenasUmProduto()
+    {
+        $carrinho = new CarrinhoDeCompras();
+
+        $carrinho->adiciona(new Produto("Geladeira", 450.00));
+
+        $maiorMenor = new MaiorEMenor();
+        $maiorMenor->encontra($carrinho);
+
+        $this->assertEquals("Geladeira", $maiorMenor->getMenor()->getNome());
+        $this->assertEquals("Geladeira", $maiorMenor->getMaior()->getNome());
     }
 }
